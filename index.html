@@ -12,8 +12,8 @@
       }
     </style>
   </head>
-  <body class="bg-gradient-to-b from-green-100 to-white text-gray-800">
-    <header class="bg-white shadow-md py-4 px-6 fixed top-0 w-full z-50">
+  <body class="bg-black text-white transition-colors duration-300" id="body">
+    <header class="bg-white/30 backdrop-blur-md shadow-md py-4 px-6 fixed top-0 w-full z-50">
       <div class="max-w-7xl mx-auto flex justify-between items-center">
         <h1 class="text-2xl font-bold text-green-600">FitPlan</h1>
         <nav class="space-x-4 text-sm">
@@ -23,6 +23,19 @@
         </nav>
       </div>
     </header>
+
+    <button onclick="toggleTheme()" class="fixed top-4 right-6 bg-white/10 border border-white px-4 py-2 rounded text-sm text-white hover:bg-white/20 z-50">🌓 Tema Değiştir</button>
+
+    <section class="relative h-screen w-full overflow-hidden">
+      <video autoplay muted loop class="absolute top-0 left-0 w-full h-full object-cover">
+        <source src="https://cdn.pixabay.com/video/2019/10/09/27856-368852110_large.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 bg-black/70 flex flex-col justify-center items-center text-center px-6">
+        <h1 class="text-5xl font-bold mb-4">FitPlan</h1>
+        <p class="text-lg max-w-xl">Kişiye özel planlarla sağlıklı yaşamın kontrolü sizde!</p>
+        <a href="#planlar" class="mt-6 inline-block bg-green-600 text-white px-6 py-3 rounded-full shadow hover:bg-green-700 transition">Planlara Göz At</a>
+      </div>
+    </section>
 
     <main class="pt-32 px-6 max-w-5xl mx-auto">
       <section class="text-center mb-20">
@@ -183,6 +196,18 @@
     <footer class="text-center text-sm py-6 text-gray-500">
       © 2025 FitPlan. Tüm hakları saklıdır.
     </footer>
-  </body>
+  <script>
+  function toggleTheme() {
+    const body = document.getElementById("body");
+    if (body.classList.contains("bg-black")) {
+      body.classList.remove("bg-black", "text-white");
+      body.classList.add("bg-gradient-to-b", "from-green-100", "to-white", "text-gray-800");
+    } else {
+      body.classList.add("bg-black", "text-white");
+      body.classList.remove("bg-gradient-to-b", "from-green-100", "to-white", "text-gray-800");
+    }
+  }
+</script>
+</body>
 </html>
 
