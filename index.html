@@ -78,22 +78,66 @@
         </form>
         <div id="sonuc" class="mt-4 text-green-800 font-semibold"></div>
       </section>
+          <section id="takvim" class="mb-20">
+        <h3 class="text-2xl font-bold mb-4 text-green-700">📅 Haftalık Plan Takvimi</h3>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white rounded-lg shadow">
+            <thead>
+              <tr class="bg-green-100">
+                <th class="py-2 px-4 text-left">Gün</th>
+                <th class="py-2 px-4 text-left">Sabah</th>
+                <th class="py-2 px-4 text-left">Öğle</th>
+                <th class="py-2 px-4 text-left">Akşam</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="py-2 px-4 font-semibold">Pazartesi</td><td class="px-4">Yulaf + Meyve</td><td class="px-4">Izgara Tavuk + Salata</td><td class="px-4">Sebze Çorbası</td></tr>
+              <tr><td class="py-2 px-4 font-semibold">Salı</td><td class="px-4">Smoothie</td><td class="px-4">Mercimek + Yoğurt</td><td class="px-4">Zeytinyağlı Sebze</td></tr>
+              <tr><td class="py-2 px-4 font-semibold">Çarşamba</td><td class="px-4">Yumurta + Tam Buğday Ekmek</td><td class="px-4">Tavuklu Salata</td><td class="px-4">Balık + Buharda Brokoli</td></tr>
+              <tr><td class="py-2 px-4 font-semibold">Perşembe</td><td class="px-4">Muz + Yoğurt</td><td class="px-4">Sebzeli Kinoa</td><td class="px-4">Izgara Hindi</td></tr>
+              <tr><td class="py-2 px-4 font-semibold">Cuma</td><td class="px-4">Yulaf Lapası</td><td class="px-4">Kuru Fasulye + Bulgur</td><td class="px-4">Tavuk + Salata</td></tr>
+              <tr><td class="py-2 px-4 font-semibold">Cumartesi</td><td class="px-4">Peynir + Domates + Zeytin</td><td class="px-4">Izgara Sebze</td><td class="px-4">Balık + Yeşillik</td></tr>
+              <tr><td class="py-2 px-4 font-semibold">Pazar</td><td class="px-4">Omlet + Tam Buğday</td><td class="px-4">Sebzeli Makarna</td><td class="px-4">Mercimek Çorbası</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
 
     <script>
-      document.getElementById("planForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const hedef = document.getElementById("hedef").value;
-        let mesaj = "";
-        if (hedef === "zayifla") {
-          mesaj = "✅ Size en uygun plan: Yağ Yakım Planı.";
-        } else if (hedef === "kas") {
-          mesaj = "✅ Size en uygun plan: Kas Gelişim Planı.";
-        } else if (hedef === "detoks") {
-          mesaj = "✅ Size en uygun plan: Detoks Planı.";
-        }
-        document.getElementById("sonuc").textContent = mesaj;
-      });
+  document.getElementById("planForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const yas = parseInt(document.getElementById("yas").value);
+    const kilo = parseFloat(document.getElementById("kilo").value);
+    const boy = parseFloat(document.getElementById("boy").value) / 100; // cm to m
+    const hedef = document.getElementById("hedef").value;
+
+    const bmi = kilo / (boy * boy);
+    let mesaj = "";
+
+    if (hedef === "zayifla") {
+      if (bmi > 25) {
+        mesaj = "✅ Kilo verme hedefin için ideal: Yağ Yakım Planı.";
+      } else {
+        mesaj = "⚠️ Kilonuz ideal sınırlarda. Dengeli beslenme önerilir.";
+      }
+    } else if (hedef === "kas") {
+      if (bmi < 22) {
+        mesaj = "✅ Kas kazanmak için: Kas Gelişim Planı tam size göre.";
+      } else {
+        mesaj = "⚠️ Önce yağ oranınızı azaltmak için bir dengeleme önerilir.";
+      }
+    } else if (hedef === "detoks") {
+      if (yas > 40) {
+        mesaj = "✅ Detoks Planı, yaşınıza uygun hafif ve arındırıcıdır.";
+      } else {
+        mesaj = "✅ Detoks Planı ile enerjinizi tazeleyin!";
+      }
+    }
+
+    document.getElementById("sonuc").textContent = mesaj;
+  });
+</script>
     </script>
 
     <footer class="text-center text-sm py-6 text-gray-500">
@@ -101,4 +145,3 @@
     </footer>
   </body>
 </html>
-
