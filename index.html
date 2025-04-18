@@ -102,7 +102,47 @@
           </table>
         </div>
       </section>
+          <section id="pdf-download" class="mb-20 text-center">
+        <h3 class="text-2xl font-bold mb-4 text-green-700">📝 Planı PDF Olarak İndir</h3>
+        <button onclick="indirPDF()" class="bg-green-600 text-white px-6 py-3 rounded-full shadow hover:bg-green-700 transition">PDF İndir</button>
+      </section>
+
+      <section id="chatbot" class="mb-20">
+        <h3 class="text-2xl font-bold mb-4 text-green-700">💬 Akıllı Diyet Asistanı</h3>
+        <div class="bg-white p-4 rounded-lg shadow max-w-lg">
+          <p class="text-sm text-gray-600">Bu alan gelecekte yapay zekâ destekli diyet asistanıyla entegre edilecektir. Şimdilik öneriler formdan alınmaktadır.</p>
+        </div>
+      </section>
     </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      function indirPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.setFontSize(16);
+        doc.text("FitPlan - Haftalık Plan Takvimi", 20, 20);
+
+        const plan = [
+          ["Gün", "Sabah", "Öğle", "Akşam"],
+          ["Pazartesi", "Yulaf + Meyve", "Izgara Tavuk + Salata", "Sebze Çorbası"],
+          ["Salı", "Smoothie", "Mercimek + Yoğurt", "Zeytinyağlı Sebze"],
+          ["Çarşamba", "Yumurta + Tam Buğday Ekmek", "Tavuklu Salata", "Balık + Brokoli"],
+          ["Perşembe", "Muz + Yoğurt", "Sebzeli Kinoa", "Izgara Hindi"],
+          ["Cuma", "Yulaf Lapası", "Kuru Fasulye + Bulgur", "Tavuk + Salata"],
+          ["Cumartesi", "Peynir + Zeytin", "Izgara Sebze", "Balık + Yeşillik"],
+          ["Pazar", "Omlet + Tam Buğday", "Sebzeli Makarna", "Mercimek Çorbası"]
+        ];
+
+        let y = 30;
+        plan.forEach((row) => {
+          doc.text(row.join(" | "), 20, y);
+          y += 10;
+        });
+
+        doc.save("fitplan_takvim.pdf");
+      }
+    </script>
 
     <script>
   document.getElementById("planForm").addEventListener("submit", function(e) {
@@ -145,3 +185,4 @@
     </footer>
   </body>
 </html>
+
