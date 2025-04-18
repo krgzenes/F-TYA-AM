@@ -63,10 +63,42 @@
           <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Gönder</button>
         </form>
       </section>
+          <section id="hedef-form" class="mb-20">
+        <h3 class="text-2xl font-bold mb-4 text-green-700">🎯 Hedefine Göre Plan Öner</h3>
+        <form id="planForm" class="grid gap-4 max-w-lg">
+          <input type="number" id="yas" placeholder="Yaşınız" class="border border-gray-300 rounded px-4 py-2" required>
+          <input type="number" id="kilo" placeholder="Kilonuz (kg)" class="border border-gray-300 rounded px-4 py-2" required>
+          <input type="number" id="boy" placeholder="Boyunuz (cm)" class="border border-gray-300 rounded px-4 py-2" required>
+          <select id="hedef" class="border border-gray-300 rounded px-4 py-2">
+            <option value="zayifla">Kilo Vermek</option>
+            <option value="kas">Kas Yapmak</option>
+            <option value="detoks">Detoks</option>
+          </select>
+          <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Plan Öner</button>
+        </form>
+        <div id="sonuc" class="mt-4 text-green-800 font-semibold"></div>
+      </section>
     </main>
+
+    <script>
+      document.getElementById("planForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const hedef = document.getElementById("hedef").value;
+        let mesaj = "";
+        if (hedef === "zayifla") {
+          mesaj = "✅ Size en uygun plan: Yağ Yakım Planı.";
+        } else if (hedef === "kas") {
+          mesaj = "✅ Size en uygun plan: Kas Gelişim Planı.";
+        } else if (hedef === "detoks") {
+          mesaj = "✅ Size en uygun plan: Detoks Planı.";
+        }
+        document.getElementById("sonuc").textContent = mesaj;
+      });
+    </script>
 
     <footer class="text-center text-sm py-6 text-gray-500">
       © 2025 FitPlan. Tüm hakları saklıdır.
     </footer>
   </body>
 </html>
+
